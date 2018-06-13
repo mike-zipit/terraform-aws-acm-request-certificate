@@ -7,13 +7,13 @@ resource "aws_acm_certificate" "default" {
 }
 
 data "aws_route53_zone" "default" {
-  count        = "${var.enabled == "true" && var.proces_domain_validation_options == "true" && var.validation_method == "DNS" ? 1 : 0}"
+  count        = "${var.proces_domain_validation_options == "true" && var.validation_method == "DNS" ? 1 : 0}"
   name         = "${var.domain_name}."
   private_zone = false
 }
 
 locals {
-  domain_validation_options = "${var.enabled == "true" ? aws_acm_certificate.default.domain_validation_options[0] : map()}"
+  domain_validation_options = "${aws_acm_certificate.default.domain_validation_options[0]}"
 }
 
 resource "aws_route53_record" "default" {
