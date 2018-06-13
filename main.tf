@@ -13,7 +13,7 @@ data "aws_route53_zone" "default" {
 }
 
 locals {
-  domain_validation_options = "${var.enabled == "true" ? aws_acm_certificate.default.domain_validation_options[0] : "false"}"
+  domain_validation_options = "${var.enabled == "true" ? aws_acm_certificate.default.domain_validation_options[0] : {}}"
 }
 
 resource "aws_route53_record" "default" {
