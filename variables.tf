@@ -32,3 +32,7 @@ variable "subject_alternative_names" {
   default     = []
   description = "A list of domains that should be SANs in the issued certificate"
 }
+
+variable "enabled" {
+  default = "true"
+}
